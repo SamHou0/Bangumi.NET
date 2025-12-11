@@ -12,6 +12,9 @@
     <RepositoryUrl>https://github.com/SamHou0/Bangumi.NET</RepositoryUrl>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <SignAssembly>False</SignAssembly>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
