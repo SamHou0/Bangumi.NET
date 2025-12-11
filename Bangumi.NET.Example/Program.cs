@@ -154,7 +154,25 @@ internal class Program
                 }
                 Console.WriteLine();
             }
-
+            // 11.获取用户角色
+            if (me != null)
+            {
+                Console.WriteLine($"11. 获取用户角色（前3个）");
+                try
+                {
+                    var userCharacters = await client.GetUserCharacterCollectionsAsync(me.Username, limit: 3);
+                    Console.WriteLine($"   共 {userCharacters.Total} 个角色，显示前 {userCharacters.Data.Count} 个:");
+                    foreach (var userChar in userCharacters.Data)
+                    {
+                        Console.WriteLine($"   - {userChar.Name} 类型: {(CharacterType)userChar.Type}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"   获取用户角色失败: {ex.Message}");
+                }
+                Console.WriteLine();
+            }
             Console.WriteLine("=== 所有测试完成 ===");
         }
         catch (Exception ex)

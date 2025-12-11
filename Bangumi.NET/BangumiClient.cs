@@ -340,6 +340,46 @@ public class BangumiClient : IDisposable
         response.EnsureSuccessStatusCode();
     }
 
+    /// <summary>
+    /// 获取用户角色收藏列表
+    /// </summary>
+    public async Task<PagedResult<UserCharacterCollection>> GetUserCharacterCollectionsAsync(string username, int limit = 30, int offset = 0, CancellationToken cancellationToken = default)
+    {
+        var response = await _httpClient.GetAsync($"/v0/users/{username}/collections/-/characters?limit={limit}&offset={offset}", cancellationToken);
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadFromJsonAsync<PagedResult<UserCharacterCollection>>(cancellationToken) ?? new PagedResult<UserCharacterCollection>();
+    }
+
+    /// <summary>
+    /// 获取用户单个角色收藏信息
+    /// </summary>
+    public async Task<UserCharacterCollection?> GetUserCharacterCollectionAsync(string username, int characterId, CancellationToken cancellationToken = default)
+    {
+        var response = await _httpClient.GetAsync($"/v0/users/{username}/collections/-/characters/{characterId}", cancellationToken);
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadFromJsonAsync<UserCharacterCollection>(cancellationToken);
+    }
+
+    /// <summary>
+    /// 获取用户人物收藏列表
+    /// </summary>
+    public async Task<PagedResult<UserPersonCollection>> GetUserPersonCollectionsAsync(string username, int limit = 30, int offset = 0, CancellationToken cancellationToken = default)
+    {
+        var response = await _httpClient.GetAsync($"/v0/users/{username}/collections/-/persons?limit={limit}&offset={offset}", cancellationToken);
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadFromJsonAsync<PagedResult<UserPersonCollection>>(cancellationToken) ?? new PagedResult<UserPersonCollection>();
+    }
+
+    /// <summary>
+    /// 获取用户单个人物收藏信息
+    /// </summary>
+    public async Task<UserPersonCollection?> GetUserPersonCollectionAsync(string username, int personId, CancellationToken cancellationToken = default)
+    {
+        var response = await _httpClient.GetAsync($"/v0/users/{username}/collections/-/persons/{personId}", cancellationToken);
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadFromJsonAsync<UserPersonCollection>(cancellationToken);
+    }
+
     #endregion
 
     #region Calendar API

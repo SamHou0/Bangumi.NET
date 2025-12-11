@@ -112,8 +112,17 @@ public class EpisodeCollectionRequest
 /// </summary>
 public class UserCharacterCollection
 {
-    [JsonPropertyName("character")]
-    public Character? Character { get; set; }
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
+
+    [JsonPropertyName("name")]
+    public string Name { get; set; } = string.Empty;
+
+    [JsonPropertyName("type")]
+    public int Type { get; set; }
+
+    [JsonPropertyName("images")]
+    public PersonImages? Images { get; set; }
 
     [JsonPropertyName("created_at")]
     public string CreatedAt { get; set; } = string.Empty;
@@ -124,8 +133,20 @@ public class UserCharacterCollection
 /// </summary>
 public class UserPersonCollection
 {
-    [JsonPropertyName("person")]
-    public Person? Person { get; set; }
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
+
+    [JsonPropertyName("name")]
+    public string Name { get; set; } = string.Empty;
+
+    [JsonPropertyName("type")]
+    public int Type { get; set; }
+
+    [JsonPropertyName("career")]
+    public List<string>? Career { get; set; }
+
+    [JsonPropertyName("images")]
+    public PersonImages? Images { get; set; }
 
     [JsonPropertyName("created_at")]
     public string CreatedAt { get; set; } = string.Empty;
